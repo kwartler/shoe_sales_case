@@ -29,18 +29,14 @@ paste(as.vector(col2rgb(allDF$hex_2)), collapse = " ")
 fviz_nbclust(rbgColors, kmeans, method = "wss")
 fviz_nbclust(rbgColors, kmeans, method = "silhouette")
 gap_stat <- clusGap(rbgColors, FUN = kmeans, nstart = 25,
-                    K.max = 10, B = 50)
+                    K.max = 15, B = 50)
 fviz_gap_stat(gap_stat)
 
 km2 <- kmeans(scale(rbgColors), 2, nstart = 3)
 fviz_cluster(km2, data = rbgColors)
 
-km2$cluster
-
 km10 <- kmeans(scale(rbgColors), 10, nstart = 3)
 fviz_cluster(km10, data = rbgColors)
-
-
 
 modelDF <- data.frame(uuID = allDF$uuID,
                       title = allDF$title,
